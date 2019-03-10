@@ -60,7 +60,7 @@ export default class PortfolioContainer extends Component {
         <button className="btn" onClick={() => this.handleFilter("JavaScript")}>
           JavaScript
         </button>
-        <button className="btn" onClick={() => this.handleFilter("HTML")}>
+        <button className="btn" onClick={() => this.handleFilter("HTML5")}>
           HTML5
         </button>
         <button className="btn" onClick={() => this.handleFilter("C++")}>
