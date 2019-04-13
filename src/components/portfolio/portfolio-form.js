@@ -192,7 +192,7 @@ export default class PortfolioForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="portfolio-for-wrapper">
+      <form onSubmit={this.handleSubmit} className="portfolio-form-wrapper">
         <div className="two-column">
           <input
             type="text"
