@@ -17,25 +17,35 @@ export default class PortfolioContainer extends Component {
   }
 
   handleFilter(filter) {
-    this.setState({
-      data: this.state.data.filter(item => {
-        return item.category === filter;
-      })
-    });
+    if(filter === "CLEAR_FILTERS") {
+      this.getPortfolioItems();
+    } else {
+      this.getPortfolioItems(filter);
+  }
   }
 
-  getPortfolioItems() {
+  getPortfolioItems(filter = null) {
     axios
       .get("https://randybarker.devcamp.space/portfolio/portfolio_items")
       .then(response => {
+        if (filter) {
+          this.setState({
+            data: response.data.portfolio_items.filter(item => {
+              return item.category === filter;
+            })
+          });
+        } else {
         this.setState({
           data: response.data.portfolio_items
         });
+
+      }
       })
       .catch(error => {
         console.log(error);
       });
   }
+  
 
   portfolioItems() {
     return this.state.data.map(item => {
@@ -53,29 +63,39 @@ export default class PortfolioContainer extends Component {
     }
 
     return (
-        <div className="portfolio-items-wrapper">
-        <button className="btn" onClick={() => this.handleFilter("React")}>
-          React
-        </button>
-        <button className="btn" onClick={() => this.handleFilter("JavaScript")}>
-          JavaScript
-        </button>
-        <button className="btn" onClick={() => this.handleFilter("HTML5")}>
-          HTML5
-        </button>
-        <button className="btn" onClick={() => this.handleFilter("C++")}>
-          C++
-        </button>
-        <button className="btn" onClick={() => this.handleFilter("Java")}>
-          Java
-        </button>
-        <button className="btn" onClick={() => this.handleFilter("Python")}>
-          Python
-        </button>
+      <div className="homepage-wrapper">
+        <div className="filter-links">
+          <button className="btn" onClick={() => this.handleFilter("React")}>
+            React
+          </button>
+          <button
+            className="btn"
+            onClick={() => this.handleFilter("JavaScript")}
+          >
+            JavaScript
+          </button>
+          <button className="btn" onClick={() => this.handleFilter("HTML5")}>
+            HTML5
+          </button>
+          <button className="btn" onClick={() => this.handleFilter("C++")}>
+            C++
+          </button>
+          <button className="btn" onClick={() => this.handleFilter("Java")}>
+            Java
+          </button>
+          <button className="btn" onClick={() => this.handleFilter("Python")}>
+            Python
+          </button>
 
-        {this.portfolioItems()}
+          <button
+            className="btn"
+            onClick={() => this.handleFilter("CLEAR_FILTERS")}
+          >
+            All
+          </button>
         </div>
-      
+        <div className="portfolio-items-wrapper">{this.portfolioItems()}</div>
+      </div>
     );
   }
 }

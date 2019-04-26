@@ -125,6 +125,7 @@ export default class App extends Component {
               path="/b/:slug"  
               render={props=> (
                 <BlogDetail {...props} loggedInStatus={this.state.loggedInStatus} />
+                
               )}
               />
               
