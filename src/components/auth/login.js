@@ -84,9 +84,10 @@ export default class Login extends Component {
               onChange={this.handleChange}
             />
           </div>
-          
-            <button className="btn" type="submit">Login</button>
-          
+
+          <button className="btn" type="submit">
+            Login
+          </button>
         </form>
       </div>
     );
